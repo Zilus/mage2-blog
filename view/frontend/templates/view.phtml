@@ -2,6 +2,12 @@
 /** @var $block \TCK\Blog\Block\PostView */
 /** @var $post \TCK\Blog\Model\Post */
 $post = $block->getPost();
+$date=$post->getCreationTime();
+$date=explode("-", $date);
+$dia=explode(" ",$date[2]);
+$meses=array("enero", "febrero", "marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
+$mes=intval($date[1])-1;
+$fecha=$dia[0]." de ".$meses[$mes]." de ".$date[0];
 ?>
 <h1 class="blog-post-item-title"><?php echo $post->getTitle() ?></h1>
 
@@ -10,5 +16,5 @@ $post = $block->getPost();
 </div>
 
 <div class="blog-post-item-meta">
-    <strong><?php echo __('Created at:') ?></strong> <?php echo $post->getCreationTime() ?>
+    <strong><?php echo __('Created at:') ?></strong> <?php echo $fecha; ?>
 </div>
