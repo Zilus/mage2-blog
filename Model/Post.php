@@ -132,6 +132,27 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
     }
 
     /**
+     * Get SEO keywords
+     *
+     * @return string|null
+     */
+    public function getSeoKeywords()
+    {
+        return $this->getData(self::SEO_KEYWORDS);
+    }
+
+    /**
+     * Get SEO description
+     *
+     * @return string|null
+     */
+    public function getSeoDescription()
+    {
+        return $this->getData(self::SEO_DESCRIPTION);
+    }
+
+
+    /**
      * Get title
      *
      * @return string|null
@@ -201,6 +222,28 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
     public function setUrlKey($url_key)
     {
         return $this->setData(self::URL_KEY, $url_key);
+    }
+
+    /**
+     * Set SEO keywords
+     *
+     * @param string $seo_keywords
+     * @return \TCK\Blog\Api\Data\PostInterface
+     */
+    public function setSeoKeywords($seo_keywords)
+    {
+        return $this->setData(self::SEO_KEYWORDS, $seo_keywords);
+    }
+
+    /**
+     * Set SEO description
+     *
+     * @param string $seo_description
+     * @return \TCK\Blog\Api\Data\PostInterface
+     */
+    public function setSeoDescription($seo_description)
+    {
+        return $this->setData(self::SEO_DESCRIPTION, $seo_description);
     }
 
     /**

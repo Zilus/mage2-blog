@@ -7,13 +7,15 @@ interface PostInterface
     /**
      * Constantes.
      */
-    const POST_ID       = 'post_id';
-    const URL_KEY       = 'url_key';
-    const TITLE         = 'title';
-    const CONTENT       = 'content';
-    const CREATION_TIME = 'creation_time';
-    const UPDATE_TIME   = 'update_time';
-    const IS_ACTIVE     = 'is_active';
+    const POST_ID           = 'post_id';
+    const URL_KEY           = 'url_key';
+    const SEO_KEYWORDS      = 'seo_keywords';
+    const SEO_DESCRIPTION   = 'seo_description';
+    const TITLE             = 'title';
+    const CONTENT           = 'content';
+    const CREATION_TIME     = 'creation_time';
+    const UPDATE_TIME       = 'update_time';
+    const IS_ACTIVE         = 'is_active';
 
     /**
      * Get ID
@@ -28,6 +30,21 @@ interface PostInterface
      * @return string
      */
     public function getUrlKey();
+
+    /**
+     * Get SEO Keywords
+     *
+     * @return string
+     */
+    public function getSeoKeywords();
+
+
+    /**
+     * Get SEO Description
+     *
+     * @return string
+     */
+    public function getSeoDescription();
 
     /**
      * Get title
@@ -79,6 +96,22 @@ interface PostInterface
      * @return \TCK\Blog\Api\Data\PostInterface
      */
     public function setUrlKey($url_key);
+
+    /**
+     * Set SEO Keywords
+     *
+     * @param string $seo_keywords
+     * @return \TCK\Blog\Api\Data\PostInterface
+     */
+    public function setSeoKeywords($seo_keywords);
+
+    /**
+     * Set SEO Description
+     *
+     * @param string $seo_description
+     * @return \TCK\Blog\Api\Data\PostInterface
+     */
+    public function setSeoDescription($seo_description);
 
     /**
      * Return full URL including base url.

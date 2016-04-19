@@ -40,7 +40,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     {
         parent::_construct();
         $this->setId('post_form');
-        $this->setTitle(__('Información de la entrada'));
+        $this->setTitle(__('Post info'));
     }
 
     /**
@@ -62,7 +62,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
 
         $fieldset = $form->addFieldset(
             'base_fieldset',
-            ['legend' => __('Información'), 'class' => 'fieldset-wide']
+            ['legend' => __('Information'), 'class' => 'fieldset-wide']
         );
 
         if ($model->getPostId()) {
@@ -72,7 +72,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         $fieldset->addField(
             'title',
             'text',
-            ['name' => 'title', 'label' => __('Título'), 'title' => __('Título'), 'required' => true]
+            ['name' => 'title', 'label' => __('Title'), 'title' => __('Title'), 'required' => true]
         );
 
         $fieldset->addField(
@@ -91,11 +91,11 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             'is_active',
             'select',
             [
-                'label' => __('Estatus'),
-                'title' => __('Estatus'),
+                'label' => __('Status'),
+                'title' => __('Status'),
                 'name' => 'is_active',
                 'required' => true,
-                'options' => ['1' => __('Habilitada'), '0' => __('Deshabilitada')]
+                'options' => ['1' => __('Enabled'), '0' => __('Disabled')]
             ]
         );
         if (!$model->getId()) {
@@ -107,12 +107,24 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             'editor',
             [
                 'name' => 'content',
-                'label' => __('Contenido'),
-                'title' => __('Contenido'),
+                'label' => __('Content'),
+                'title' => __('Content'),
                 'style' => 'height:36em',
                 'wysiwyg'   => true,
                 'required' => true
             ]
+        );
+
+        $fieldset->addField(
+            'seo_keywords',
+            'text',
+            ['name' => 'seo_keywords', 'label' => __('SEO Keywords'), 'title' => __('SEO Keywords'), 'required' => true]
+        );
+
+        $fieldset->addField(
+            'seo_description',
+            'text',
+            ['name' => 'seo_description', 'label' => __('SEO Description'), 'title' => __('SEO Description'), 'required' => true]
         );
 
         $form->setValues($model->getData());

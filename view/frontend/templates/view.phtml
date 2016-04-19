@@ -4,10 +4,10 @@
 $post = $block->getPost();
 $date=$post->getCreationTime();
 $date=explode("-", $date);
-$dia=explode(" ",$date[2]);
-$meses=array("enero", "febrero", "marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
-$mes=intval($date[1])-1;
-$fecha=$dia[0]." de ".$meses[$mes]." de ".$date[0];
+$day=explode(" ",$date[2]);
+$months=array("january", "february", "march","april","may","june","july","august","september","october","november","december");
+$month=intval($date[1])-1;
+$date_txt=$day[0]." de ".$months[$month]." de ".$date[0];
 ?>
 <h1 class="blog-post-item-title"><?php echo $post->getTitle() ?></h1>
 
@@ -16,5 +16,5 @@ $fecha=$dia[0]." de ".$meses[$mes]." de ".$date[0];
 </div>
 
 <div class="blog-post-item-meta">
-    <strong><?php echo __('Created at:') ?></strong> <?php echo $fecha; ?>
+    <strong><?php echo __('Created at:') ?></strong> <?php echo $date_txt; ?>
 </div>

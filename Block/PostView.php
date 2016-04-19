@@ -46,6 +46,48 @@ class PostView extends \Magento\Framework\View\Element\Template implements
         return $this->getData('post');
     }
 
+    protected function _prepareLayout()
+    {
+        $post=$this->getPost();
+        parent::_prepareLayout();
+        
+        $this->getLayout()->createBlock('Magento\Catalog\Block\Breadcrumbs');
+                
+        $seo_title = __($post->getTitle());
+        $description = __($post->getSeoDescription());
+        $keywords = __($post->getSeoKeywords());
+ 
+        $this->pageConfig->getTitle()->set($seo_title);
+        $this->pageConfig->setDescription($description);
+        $this->pageConfig->setKeywords($keywords);
+
+        $pageMainTitle = $this->getLayout()->getBlock('page.main.title');
+        if ($pageMainTitle) {
+            $pageMainTitle->setPageTitle($seo_title);
+        }
+
+        if ($breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs')) {
+            $breadcrumbsBlock->addCrumb(
+                'noticias',
+                [
+                    'label' => "Blog",
+                    'title' => "Blog",
+                    'link' => "/blog/"
+                ]
+            );
+            $breadcrumbsBlock->addCrumb(
+                'noticia',
+                [
+                    'label' => $seo_title,
+                    'title' => $seo_title,
+                    'link' => false
+                ]
+            );
+        }        
+        
+        return $this;
+    }
+
     /**
      * Return identifiers for produced content
      *

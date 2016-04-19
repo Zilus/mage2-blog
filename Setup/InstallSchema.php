@@ -9,7 +9,7 @@ class InstallSchema implements InstallSchemaInterface
 {
     /**
      * Installs DB schema for a module
-     *
+     * select * from setup_module;
      * @param SchemaSetupInterface $setup
      * @param ModuleContextInterface $context
      * @return void
@@ -29,8 +29,10 @@ class InstallSchema implements InstallSchemaInterface
                 ['identity' => true, 'nullable' => false, 'primary' => true],
                 'Post ID'
             )
-            ->addColumn('url_key', Table::TYPE_TEXT, 100, ['nullable' => true, 'default' => null])
+            ->addColumn('url_key', Table::TYPE_TEXT, 100, ['nullable' => true, 'default' => null])            
             ->addColumn('title', Table::TYPE_TEXT, 255, ['nullable' => false], 'Blog Title')
+            ->addColumn('seo_keywords', Table::TYPE_TEXT, 255, ['nullable' => false], 'SEO Keywords')
+            ->addColumn('seo_description', Table::TYPE_TEXT, 255, ['nullable' => false], 'SEO Description')
             ->addColumn('content', Table::TYPE_TEXT, '2M', [], 'Blog Content')
             ->addColumn('is_active', Table::TYPE_SMALLINT, null, ['nullable' => false, 'default' => '1'], 'Is Post Active?')
             ->addColumn('creation_time', Table::TYPE_DATETIME, null, ['nullable' => false], 'Creation Time')
