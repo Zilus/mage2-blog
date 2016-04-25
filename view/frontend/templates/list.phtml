@@ -101,6 +101,26 @@ function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $co
         $month=intval($date[1])-1;
         $date_txt=$day[0]." de ".$months[$month]." de ".$date[0];
 
+        //cut extra long posts
+        $content=$post->getContent();
+        $number= count(str_word_count($content,1));
+        if($number>=20) {
+            $content=truncateHtml($content, 400, '...', true, true);
+            $boton='<p><a class="btn btn-primary push-top" title="Read more" href="'.$post->getUrl().'">Read more</a></p>';
+        } else {
+            $content=$post->getContent();
+            $boton='';
+        }
+
+        //content images fix
+        $post_content=$content;
+        $r_start='{{media url="';
+        $rr_start ='/pub/media/';
+        $r_end='"}}';
+        $rr_end ='';
+        $post_content = str_replace($r_start, $rr_start, $post_content);
+        $post_content = str_replace($r_end, $rr_end, $post_content);
+
     ?>    
         <li class="blog-post-list-item">
             <h3 class="blog-post-item-title">
@@ -108,7 +128,7 @@ function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $co
             </h3>
 
             <div class="blog-post-item-content">
-                <?php echo $post->getContent(); ?>
+                <?php echo $post_content; ?>
             </div>
 
             <div class="blog-post-item-meta">

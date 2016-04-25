@@ -1,4 +1,5 @@
-<?php namespace TCK\Blog\Helper;
+<?php 
+namespace TCK\Blog\Helper;
 
 use Magento\Framework\App\Action\Action;
 

@@ -8,11 +8,20 @@ $day=explode(" ",$date[2]);
 $months=array("january", "february", "march","april","may","june","july","august","september","october","november","december");
 $month=intval($date[1])-1;
 $date_txt=$day[0]." de ".$months[$month]." de ".$date[0];
+
+//content
+$post_content=$post->getContent();
+$r_start='{{media url="';
+$rr_start ='/pub/media/';
+$r_end='"}}';
+$rr_end ='';
+$post_content = str_replace($r_start, $rr_start, $post_content);
+$post_content = str_replace($r_end, $rr_end, $post_content);
 ?>
 <h1 class="blog-post-item-title"><?php echo $post->getTitle() ?></h1>
 
 <div class="blog-post-item-content">
-    <?php echo $post->getContent(); ?>
+    <?php echo $post_content; ?>
 </div>
 
 <div class="blog-post-item-meta">
